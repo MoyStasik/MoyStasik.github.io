@@ -1,0 +1,2 @@
+# MoyStasik.github.io
+practice
