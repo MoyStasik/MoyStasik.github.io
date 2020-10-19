@@ -1,2 +1,2 @@
-# MoyStasik.github.io
+# MoyStasik
 practice
