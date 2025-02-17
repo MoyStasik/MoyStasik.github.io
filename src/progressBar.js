@@ -75,7 +75,7 @@ export class ProgressBar {
         this.#isHidden = false;
         this.progressCircle.style.opacity = "1";
 
-        
+
         const stageOne = this.progressBlock.querySelector("#stage-one");
         const stageTwo = this.progressBlock.querySelector("#stage-two");
         const stageThree = this.progressBlock.querySelector("#stage-three");
@@ -311,6 +311,7 @@ function createInputElementWithValue(type, id, className, value) {
     input.id = id;
     input.className = className;
     input.value = value;
+    input.autocomplete = "off";
 
     return input;
 }
@@ -361,7 +362,6 @@ function createInputElementWithoutValue(type, id, name, className) {
     input.type = type;
     input.id = id;
     input.className = className;
-    input.autocomplete = "off";
     
     return input;
 }
