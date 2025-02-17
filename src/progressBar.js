@@ -22,26 +22,8 @@ export class ProgressBar {
 
         this.#value = Number(value);
 
-        this.progressBlock = createDiv("progress-block");
+        createProgressBarBlock(this);
 
-        const progressCircleContainer = createDiv("progress-icon");
-        this.progressCircle = createDiv("progress-circle", "progress-bar");
-        progressCircleContainer.appendChild(this.progressCircle);
-        this.progressBlock.appendChild(progressCircleContainer);
-        this.progressBlock.appendChild(createApiForProgressBar());
-
-        this.togglehideButton = this.progressBlock.querySelector("#toggle-btn-hide");
-        const toggleHideInput = this.progressBlock.querySelector("#hide-toggle");
-        this.togglehideButton.addEventListener("click", (event) => toggleListeners(event, toggleHideInput, this));
-
-        this.toggleAnimationButton = this.progressBlock.querySelector("#toggle-btn-animation");
-        const toggleAnimationInput = this.progressBlock.querySelector("#animation-toggle");
-        this.toggleAnimationButton.addEventListener("click", (event) => toggleListeners(event, toggleAnimationInput, this));
-    
-        const upperCircle = createDiv("upper-circle");
-        progressCircleContainer.appendChild(upperCircle);
-
-        this.valueInput = this.progressBlock.querySelector("#progress-value-input");
         validateInput(this.valueInput, this);
         setFirstState(this.#value, isAnimated, isHidden, this);
     }
@@ -52,6 +34,7 @@ export class ProgressBar {
      */
     renderTo(element) {
         console.log(this.progressBlock instanceof HTMLElement, element)
+        element.insertAdjacentElement("beforeend", this.progressHeader);
         element.insertAdjacentElement("beforeend", this.progressBlock);
     }
 
@@ -121,6 +104,38 @@ export class ProgressBar {
     getValue() {
         return this.#value;
     }
+}
+
+/**
+ * create progress bar block elements 
+ * @param {ProgressBar} progressBarInstance - progress bar object
+ */
+function createProgressBarBlock(progressBarInstance) {
+    progressBarInstance.progressHeader = createDiv("progress-header");
+    const headerSpan = createSpanElement("progress-header__span", "Progress");
+    progressBarInstance.progressHeader.appendChild(headerSpan);
+
+    progressBarInstance.progressBlock = createDiv("progress-block");
+
+    const progressCircleContainer = createDiv("progress-icon");
+    progressBarInstance.progressCircle = createDiv("progress-circle", "progress-bar");
+    progressCircleContainer.appendChild(progressBarInstance.progressCircle);
+    progressBarInstance.progressBlock.appendChild(progressCircleContainer);
+    progressBarInstance.progressBlock.appendChild(createApiForProgressBar());
+
+    progressBarInstance.togglehideButton = progressBarInstance.progressBlock.querySelector("#toggle-btn-hide");
+    const toggleHideInput = progressBarInstance.progressBlock.querySelector("#hide-toggle");
+    progressBarInstance.togglehideButton.addEventListener("click", (event) => toggleListeners(event, toggleHideInput, progressBarInstance));
+
+    progressBarInstance.toggleAnimationButton = progressBarInstance.progressBlock.querySelector("#toggle-btn-animation");
+    const toggleAnimationInput = progressBarInstance.progressBlock.querySelector("#animation-toggle");
+    progressBarInstance.toggleAnimationButton.addEventListener("click", (event) => toggleListeners(event, toggleAnimationInput, progressBarInstance));
+
+    const upperCircle = createDiv("upper-circle");
+    progressCircleContainer.appendChild(upperCircle);
+
+    progressBarInstance.valueInput = progressBarInstance.progressBlock.querySelector("#progress-value-input");
+    
 }
 
 /**
