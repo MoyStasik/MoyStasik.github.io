@@ -11,3 +11,9 @@ html, body, #root {
 #root {
     margin: 10% auto;
 }
+
+@media screen and (max-height: 450px) {
+    #root {
+        margin: 2% auto;
+    }
+}

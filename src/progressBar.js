@@ -168,7 +168,7 @@ function setFirstState(value, isAnimated, isHidden, progoressBlockInstance) {
 function validateInput(valueInput, progoressBlockInstance) {
     valueInput.addEventListener("keypress", (event) => {
         if (!/[0-9]/.test(event.key) && event.key !== "Backspace") {
-            event.preventDefault();  // Что за незаконный вторженец? Не цифра!
+            event.preventDefault();
         }
         else if (valueInput.value == 100 ){
             event.preventDefault();
