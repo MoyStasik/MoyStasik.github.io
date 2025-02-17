@@ -322,6 +322,7 @@ function createInputElementWithoutValue(type, id, name, className) {
     input.type = type;
     input.id = id;
     input.className = className;
+    input.autocomplete = "off";
     
     return input;
 }
